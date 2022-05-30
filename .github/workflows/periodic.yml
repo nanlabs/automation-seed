@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies without generating a lockfile and fail if an update is needed
         run: yarn --frozen-lockfile
 
-      - name: Run integration tests
+      - name: Run e2e tests
         run: yarn test:remote --suite ${{ matrix.suite }}
         env:
           OUTPUT_DIR: "../../logs"

@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-integration-tests:
+  run-e2e-tests:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
 

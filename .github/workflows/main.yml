@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies without generating a lockfile and fail if an update is needed
         run: yarn --frozen-lockfile
 
-      - name: Run integration tests
+      - name: Run e2e tests
         run: yarn test:remote --suite ci.report
         env:
           OUTPUT_DIR: "../../logs"
@@ -74,7 +74,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         if: always()
         with:
-          branch: master # The branch the action should deploy to.
+          branch: main # The branch the action should deploy to.
           folder: allure-report # The folder the action should deploy.
           target-folder: docs
 
