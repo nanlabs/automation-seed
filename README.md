@@ -19,11 +19,11 @@
 - [Dependencies](#dependencies)
 - [Executing Tests](#executing-tests)
   - [Available Scripts](#available-scripts)
-  - [Execute Suite](#execute-suite)
-  - [Execute Spec Files](#execute-spec-files)
+    - [Execute Suite](#execute-suite)
+    - [Execute Spec Files](#execute-spec-files)
     - [Capabilities](#capabilities)
   - [Environment Variables](#environment-variables)
-- [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid)
+  - [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid)
 - [CI/CD](#cicd)
 - [Config Files](#config-files)
   - [Reporters](#reporters)
@@ -66,7 +66,7 @@ You can specify the `suite`s within `./config/wdio.suites.conf.ts`.
 - `yarn test:remote` will execute the tests using the capabilities from Selenoid - Check the section [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid) for more information about remote execution.
 - `yarn test:docker` - _Soon_.
 
-### Execute Suite
+#### Execute Suite
 
 > Example:
 
@@ -74,7 +74,7 @@ You can specify the `suite`s within `./config/wdio.suites.conf.ts`.
 FIREFOX=1 yarn test:local --suite ci.periodic
 ```
 
-### Execute Spec Files
+#### Execute Spec Files
 
 > Example:
 
@@ -112,16 +112,14 @@ export FIREFOX BROWSER_VISIBLE
 yarn test:local --suite ci.periodic
 ```
 
----
-
-## Remote Tests execution using Selenoid
+### Remote Tests execution using Selenoid
 
 When using the `remote` execution mode it is needed to provide a url and port for a running Selenium Hub. For that we hightly recommend using [Selenoid](https://github.com/aerokube/selenoid).
 
 You can give it a try locally as follows:
 
 ```sh
-yarn selenoid --start --ui
+yarn selenoid --start --ui # access to `http://localhost:8080` to see the Selenoid Dashboard
 FIREFOX=1 yarn test:remote --suite ci.periodic
 ```
 
