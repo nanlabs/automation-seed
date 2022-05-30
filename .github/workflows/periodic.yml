@@ -54,6 +54,13 @@ jobs:
         # trying to save history of previous runs if it is exists
         run: cp -r $(pwd)/history/. $(pwd)/allure-results/history || true
 
+      - name: Update history
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: history
+          path: ./allure-results/history
+
       - name: Create report
         if: always()
         run: yarn report --clean
