@@ -55,7 +55,7 @@ jobs:
         run: cp -r $(pwd)/history/. $(pwd)/allure-results/history || true
 
       - name: Create report
-        if: allways()
+        if: always()
         run: yarn report --clean
 
       - name: Deploy report to gh-pages
