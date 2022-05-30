@@ -1,21 +1,21 @@
-name: Periodic Checks
+name: Main Report Update
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  push:
+    branches-ignore:
+    - '!main' # Push events to branches matching allure-report
+    paths-ignore:
+    - 'history/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-jobs:
-  periodic-checks:
-    runs-on: ubuntu-latest
+permissions: 
+  contents: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        suite:
-          - ci.periodic
+jobs:
+  main-check:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Begin CI...
@@ -40,14 +40,37 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Run integration tests
-        run: yarn test:remote --suite ${{ matrix.suite }}
+        run: yarn test:remote --suite ci.report
         env:
           OUTPUT_DIR: "../../logs"
           WEBDRIVER_LOGLEVEL: info
           MAX_INSTANCES: 3
           CHROME: 2
           WEBDRIVER_SPEC_FILE_RETRIES: 1
-          ENV: ${{ matrix.environment }}
+
+      - name: Save history
+        if: always()
+        # trying to save history of previous runs if it exists
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true
+
+      - name: Create report
+        if: always()
+        run: yarn report --clean
+
+      - name: Update history
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: allure-report
+          path: ./allure-report
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@3.1.0
+        if: always()
+        with:
+          BRANCH: master # The branch the action should deploy to.
+          FOLDER: allure-report # The folder the action should deploy.
+          TARGET_FOLDER: docs
 
       - name: Create Artifact
         if: always()
