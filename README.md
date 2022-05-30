@@ -120,13 +120,11 @@ It is possible to specify another Selenium Hub with the env variables `SELENIUM_
 
 We have different workflows that will be used on CI/CD using Github Actions. The workflows will be executed using Selenoid so it is needed to only use the `yarn test:remote` script inside them:
 
-You can go to [Actions](https://github.com/nanlabs/automation-seed/actions) to see the list of available workflows:
-
-![image](https://user-images.githubusercontent.com/17727170/150804243-a823517b-376a-4ab3-8750-adf5ac0f9dda.png)
+You can go to [Actions](https://github.com/nanlabs/automation-seed/actions) to see the list of available workflows.
 
 For example, you can use the Custom Workflow Execution to execute any specific suite on Github Actions using Selenoid:
 
-![image](https://user-images.githubusercontent.com/17727170/151607948-48260d66-46eb-4b40-a266-2204172a9a7b.png)
+![image](https://user-images.githubusercontent.com/17727170/170927815-498019e1-ef7b-4bba-8694-9a1c79805c45.png)
 
 ---
 
