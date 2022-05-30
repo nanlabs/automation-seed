@@ -6,8 +6,18 @@ export type ExecutionMode = 'docker' | 'remote' | 'local';
 
 export const EXECUTION_MODES: ExecutionMode[] = ['docker', 'remote', 'local'];
 
-export const getExecutionMode = (): ExecutionMode =>
-  EXECUTION_MODES.includes(process.env.MODE as never) ? (process.env.MODE as ExecutionMode) : 'local';
+export const getExecutionMode = (): ExecutionMode => {
+  const executionMode = EXECUTION_MODES.includes(process.env.MODE as never)
+    ? (process.env.MODE as ExecutionMode)
+    : 'local';
+
+  if (executionMode === 'docker') {
+    console.warn('Execution mode with Docker Service is not supported yet. Will use `local` mode instead');
+    return 'local';
+  }
+
+  return executionMode;
+};
 
 export const getRemoteExecutionServerHost = (): string | undefined => process.env.REMOTE_SERVER_URL || 'localhost';
 
