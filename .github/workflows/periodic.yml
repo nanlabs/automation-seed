@@ -49,8 +49,23 @@ jobs:
           WEBDRIVER_SPEC_FILE_RETRIES: 1
           ENV: ${{ matrix.environment }}
 
+      - name: Save history
+        if: always()
+        # trying to save history of previous runs if it is exists
+        run: cp -r $(pwd)/history/. $(pwd)/allure-results/history || true
+
+      - name: Create report
+        if: allways()
+        run: yarn report --clean
+
+      - name: Deploy report to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+
       - name: Create Artifact
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: result
