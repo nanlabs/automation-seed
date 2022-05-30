@@ -11,10 +11,10 @@ export const getExecutionMode = (): ExecutionMode => {
     ? (process.env.MODE as ExecutionMode)
     : 'local';
 
-  // if (executionMode === 'docker') {
-  //   console.warn('Execution mode with Docker Service is not supported yet. Will use `local` mode instead');
-  //   return 'local';
-  // }
+  if (executionMode === 'docker') {
+    console.warn('Execution mode with Docker Service is not supported yet. Will use `local` mode instead');
+    return 'local';
+  }
 
   return executionMode;
 };
