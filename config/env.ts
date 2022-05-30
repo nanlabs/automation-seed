@@ -11,10 +11,10 @@ export const getExecutionMode = (): ExecutionMode => {
     ? (process.env.MODE as ExecutionMode)
     : 'local';
 
-  if (executionMode === 'docker') {
-    console.warn('Execution mode with Docker Service is not supported yet. Will use `local` mode instead');
-    return 'local';
-  }
+  // if (executionMode === 'docker') {
+  //   console.warn('Execution mode with Docker Service is not supported yet. Will use `local` mode instead');
+  //   return 'local';
+  // }
 
   return executionMode;
 };
@@ -51,7 +51,7 @@ export const getCapabilitiesMaxInstances = (): number =>
 export const getCapabilityMaxInstances = (capabilityName: DisaredCapabilityName): number => {
   const maxInstances = process.env[capabilityName.toUpperCase()] || '';
 
-  return maxInstances ? parseInt(maxInstances) : 4444;
+  return maxInstances ? parseInt(maxInstances) : 1;
 };
 
 export const getCapabilityOptionsOverride = (): Partial<WebDriver.DesiredCapabilities> =>
