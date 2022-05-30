@@ -28,22 +28,31 @@
       "pre-commit": "lint-staged"
     }
   },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
   "scripts": {
-    "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",
     "lint": "eslint .",
-    "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md}\" && eslint . --fix"
+    "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md}\" && eslint . --fix",
+    "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",
+    "test:local": "MODE=local yarn test",
+    "test:remote": "MODE=remote yarn test"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
+    "@types/node": "^17.0.36",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "@wdio/allure-reporter": "^7.16.1",
-    "@wdio/cli": "^7.16.2",
-    "@wdio/local-runner": "^7.16.2",
+    "@wdio/cli": "^7.19.5",
+    "@wdio/local-runner": "^7.19.5",
     "@wdio/mocha-framework": "^7.16.1",
-    "@wdio/runner": "^7.16.2",
+    "@wdio/runner": "^7.19.5",
     "@wdio/selenium-standalone-service": "^7.19.5",
     "chromedriver": "^101.0.0",
     "deepmerge": "^4.2.2",
