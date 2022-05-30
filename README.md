@@ -1,7 +1,6 @@
 <div align="center">
 <h1>Automation Seed</h1>
 
-[vlang.io](https://vlang.io) |
 [Docs](#) |
 [Contributing](https://github.com/nanlabs/automation-seed/blob/main/CONTRIBUTING.md)
 
