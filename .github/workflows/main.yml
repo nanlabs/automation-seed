@@ -64,7 +64,7 @@ jobs:
         run: yarn report --clean
 
       - name: Update history
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: allure-report
