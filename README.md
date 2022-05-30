@@ -1,4 +1,18 @@
-# Automation Seed
+<div align="center">
+<h1>Automation Seed</h1>
+
+[vlang.io](https://vlang.io) |
+[Docs](#) |
+[Contributing](https://github.com/nanlabs/automation-seed/blob/main/CONTRIBUTING.md)
+
+</div>
+<div align="center">
+
+[![Periodic Check][workflowbadge]][workflowurl]
+[![Report Deployment][deploydocsbadge]][deploydocsurl]
+[![License: MIT][licensebadge]][licenseurl]
+
+</div>
 
 - [Automation Seed](#automation-seed)
 	- [Quickstart](#quickstart)
@@ -146,6 +160,9 @@ Test reporter, that prints detailed results to console and is useful for running
 
 You can read the full documentation about how to create tests, the existing tools and design patterns we use [here](./TESTS_DESIGN.md)
 
-## LICENSE
-
-[MIT](./LICENSE)
+[workflowbadge]: https://github.com/nanlabs/automation-seed/actions/workflows/periodic.yml/badge.svg
+[deploydocsbadge]: https://github.com/nanlabs/automation-seed/actions/workflows/main.yml/badge.svg
+[licensebadge]: https://img.shields.io/badge/License-MIT-blue.svg
+[workflowurl]: https://github.com/nanlabs/automation-seed/actions/workflows/periodic.yml
+[deploydocsurl]: https://github.com/nanlabs/automation-seed/actions/workflows/main.yml
+[licenseurl]: https://github.com/nanlabs/automation-seed/blob/main/LICENSE
