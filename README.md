@@ -13,6 +13,8 @@
 
 </div>
 
+* * *
+
 - [Automation Seed](#automation-seed)
 	- [Quickstart](#quickstart)
 	- [Dependencies](#dependencies)
