@@ -11,6 +11,7 @@ export const config: Partial<WebdriverIO.Config> = {
   connectionRetryCount: 3,
   framework: 'mocha',
   reporters: [
+    'spec',
     [
       'allure',
       {
