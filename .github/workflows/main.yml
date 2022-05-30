@@ -15,6 +15,12 @@ permissions:
 
 jobs:
   main-check:
+    concurrency: report
+
+    environment: 
+      name: report
+      url: https://nanlabs.github.io/automation-seed
+
     runs-on: ubuntu-latest
 
     steps:
