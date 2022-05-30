@@ -13,24 +13,24 @@
 
 </div>
 
-* * *
+---
 
 - [Automation Seed](#automation-seed)
-	- [Quickstart](#quickstart)
-	- [Dependencies](#dependencies)
-	- [Executing Tests](#executing-tests)
-		- [Available Scripts](#available-scripts)
-		- [Execute Suite](#execute-suite)
-		- [Execute Spec Files](#execute-spec-files)
-			- [Capabilities](#capabilities)
-		- [Environment Variables](#environment-variables)
-	- [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid)
-	- [CI/CD](#cicd)
-	- [Config Files](#config-files)
-		- [Reporters](#reporters)
-		- [Spec](#spec)
-	- [Creating Tests](#creating-tests)
-	- [LICENSE](#license)
+  - [Quickstart](#quickstart)
+  - [Dependencies](#dependencies)
+  - [Executing Tests](#executing-tests)
+    - [Available Scripts](#available-scripts)
+    - [Execute Suite](#execute-suite)
+    - [Execute Spec Files](#execute-spec-files)
+      - [Capabilities](#capabilities)
+    - [Environment Variables](#environment-variables)
+  - [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid)
+  - [CI/CD](#cicd)
+  - [Config Files](#config-files)
+    - [Reporters](#reporters)
+    - [Spec](#spec)
+  - [Creating Tests](#creating-tests)
+  - [LICENSE](#license)
 
 ## Quickstart
 
