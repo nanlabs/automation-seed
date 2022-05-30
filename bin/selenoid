@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+## Copyright @ 2022 NaNLabs
+## No usage or redistribution without permission.
+##
+## This program is the command line interface of NautomationLabs.
+##
+##     @script.name [OPTION] ARGUMENTS...
+##
+## Options:
+##     -h, --help              This shows this message
+##         --start             Initialize Selenoid.
+##         --stop              Close Selenoid.
+##         --ui                Makes it possible to handle Selenoid UI in combination with `--start` or `--stop`
+##
+
+ROOT=$(dirname "$0")
+
+source "${ROOT}/util/opts/opts.sh" || exit
+
+if ! type -p docker >/dev/null; then
+    echo "docker is not installed on this system."
+    exit 1
+fi
+
+if [[ ! -x "${ROOT}"/cm ]]; then
+    cd "${ROOT}" || exit
+    curl -s https://aerokube.com/cm/bash | bash
+    cd ..
+fi
+
+if [[ -n "${start}" ]]; then
+    "${ROOT}"/cm selenoid start --vnc
+
+    if [[ -n "${ui}" ]]; then
+        # init selenoid ui
+        "${ROOT}"/cm selenoid-ui start
+    fi
+    exit
+fi
+
+if [[ -n "${stop}" ]]; then
+    "${ROOT}"/cm selenoid stop
+
+    if [[ -n "${ui}" ]]; then
+        # init selenoid ui
+        "${ROOT}"/cm selenoid-ui stop
+    fi
+    exit
+fi
+
+[[ -z "$documentation" ]] && parse_documentation
+echo "$documentation"
