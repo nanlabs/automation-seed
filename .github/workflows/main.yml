@@ -71,12 +71,12 @@ jobs:
           path: ./allure-report
 
       - name: Deploy report
-        uses: JamesIves/github-pages-deploy-action@3.1.0
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         if: always()
         with:
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: allure-report # The folder the action should deploy.
-          TARGET_FOLDER: docs
+          branch: master # The branch the action should deploy to.
+          folder: allure-report # The folder the action should deploy.
+          target-folder: docs
 
       - name: Create Artifact
         if: always()
