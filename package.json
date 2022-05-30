@@ -37,6 +37,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md}\" && eslint . --fix",
+    "report": "allure generate",
     "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",
     "test:local": "MODE=local yarn test",
     "test:remote": "MODE=remote yarn test"
@@ -54,6 +55,7 @@
     "@wdio/mocha-framework": "^7.16.1",
     "@wdio/runner": "^7.19.5",
     "@wdio/selenium-standalone-service": "^7.19.5",
+    "allure-commandline": "^2.17.2",
     "chromedriver": "^101.0.0",
     "deepmerge": "^4.2.2",
     "dotenv": "^10.0.0",
