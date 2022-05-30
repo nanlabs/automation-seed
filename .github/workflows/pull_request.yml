@@ -1,0 +1,50 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-integration-tests:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.18.1"
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies without generating a lockfile and fail if an update is needed
+        run: yarn --frozen-lockfile
+
+      - name: Run tests for PR
+        run: yarn test:remote --suite ci.pull_request
+        env:
+          OUTPUT_DIR: "../../logs"
+          CHROME: 1
+
+      - name: Create Artifact
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: result
+          if-no-files-found: warn
+          path: |
+            logs
+            test/errors
+            test/reports

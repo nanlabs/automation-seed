@@ -1,4 +1,7 @@
 export const config: Partial<WebdriverIO.Config> = {
-  specs: ['./test/specs/**/*.ts'],
-  exclude: [],
+  suites: {
+    'debug': [],
+    'ci.periodic': ['./test/specs/**/*.ts'],
+    'ci.pull_request': ['./test/specs/**/*.ts'],
+  },
 };

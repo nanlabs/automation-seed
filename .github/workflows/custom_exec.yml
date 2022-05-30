@@ -1,0 +1,110 @@
+name: Manual Execution
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      log_level:
+        description: Specifies the log level
+        required: true
+        type: choice
+        default: "info"
+        options:
+          - "trace"
+          - "debug"
+          - "info"
+          - "warn"
+          - "error"
+          - "silent"
+
+      suite:
+        description: Suite to be executed
+        default: "debug"
+        required: true
+
+      spec:
+        description: Spec to be executed. (Won't be used if suite is specified)
+        default: ""
+        required: false
+
+      max_instances:
+        description: Maximum number of instances to be executed
+        default: ""
+        required: false
+
+      chrome_instances:
+        description: Amount of Chrome Instances to be used. Won't use Chrome when its value is a blank string
+        default: "1"
+        required: false
+
+      firefox_instances:
+        description: Amount of Firefox Instances to be used. Won't use Firefox when its value is a blank string
+        default: ""
+        required: false
+
+      browser_visible:
+        description: Specifies whether the browser is visible on the Remote Dashboard
+        type: boolean
+        default: false
+        required: false
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.18.1"
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies without generating a lockfile and fail if an update is needed
+        run: yarn --frozen-lockfile
+
+      - name: Execute test Suite
+        run: yarn test:remote --suite ${{ github.event.inputs.suite }}
+        if: ${{ github.event.inputs.suite != '' }}
+        env:
+          OUTPUT_DIR: "../../logs"
+          WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
+          BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
+          MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
+          CHROME: ${{ github.event.inputs.chrome_instances }}
+          FIREFOX: ${{ github.event.inputs.firefox_instances }}
+          WEBDRIVER_SPEC_FILE_RETRIES: 1
+
+      - name: Execute test Spec
+        run: yarn test:remote --spec ${{ github.event.inputs.spec }}
+        if: ${{ github.event.inputs.spec != '' }}
+        env:
+          OUTPUT_DIR: "../../logs"
+          WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
+          BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
+          MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
+          CHROME: ${{ github.event.inputs.chrome_instances }}
+          FIREFOX: ${{ github.event.inputs.firefox_instances }}
+          WEBDRIVER_SPEC_FILE_RETRIES: 1
+
+      - name: Create Artifact
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: result
+          if-no-files-found: warn
+          path: |
+            logs
+            test/errors
+            test/reports

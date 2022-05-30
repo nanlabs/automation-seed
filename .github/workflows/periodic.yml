@@ -1,0 +1,61 @@
+name: Periodic Checks
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  periodic-checks:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        suite:
+          - ci.periodic
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.18.1"
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies without generating a lockfile and fail if an update is needed
+        run: yarn --frozen-lockfile
+
+      - name: Run integration tests
+        run: yarn test:remote --suite ${{ matrix.suite }}
+        env:
+          OUTPUT_DIR: "../../logs"
+          WEBDRIVER_LOGLEVEL: info
+          MAX_INSTANCES: 3
+          CHROME: 2
+          WEBDRIVER_SPEC_FILE_RETRIES: 1
+          ENV: ${{ matrix.environment }}
+
+      - name: Create Artifact
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: result
+          if-no-files-found: warn
+          path: |
+            logs
+            test/errors
+            test/reports
