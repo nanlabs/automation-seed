@@ -38,6 +38,7 @@
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md}\" && eslint . --fix",
     "report": "allure generate",
+    "selenoid": "./bin/selenoid",
     "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",
     "test:local": "MODE=local yarn test",
     "test:remote": "MODE=remote yarn test"

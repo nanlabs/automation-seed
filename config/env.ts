@@ -19,10 +19,10 @@ export const getExecutionMode = (): ExecutionMode => {
   return executionMode;
 };
 
-export const getRemoteExecutionServerHost = (): string | undefined => process.env.REMOTE_SERVER_URL || 'localhost';
+export const getRemoteExecutionServerHost = (): string | undefined => process.env.SELENIUM_HUB_URL || 'localhost';
 
 export const getRemoteExecutionServerPort = (): number => {
-  const port = process.env.REMOTE_SERVER_PORT;
+  const port = process.env.SELENIUM_HUB_PORT;
 
   return port ? parseInt(port) : 4444;
 };
