@@ -2,10 +2,13 @@ name: Main Report Update
 
 on:
   push:
-    branches-ignore:
-    - '!main' # Push events to branches matching allure-report
+    branches:
+      - main
     paths-ignore:
-    - 'history/**'
+    - 'docs/**'
+    
+  schedule:
+    - cron: "0 0 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
