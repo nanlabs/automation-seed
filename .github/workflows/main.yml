@@ -66,13 +66,6 @@ jobs:
         if: always()
         run: yarn report --clean
 
-      - name: Update history
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: allure-report
-          path: ./allure-report
-
       - name: Deploy report
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         if: always()
