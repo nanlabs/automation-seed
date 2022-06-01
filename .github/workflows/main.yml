@@ -81,7 +81,7 @@ jobs:
           name: result
           if-no-files-found: warn
           path: |
+            ~/.aerokube/selenoid
             logs
             allure-results
             allure-report
-            ~/.aerokube/selenoid
