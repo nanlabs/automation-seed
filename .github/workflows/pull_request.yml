@@ -19,7 +19,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.18.1"
+          node-version: '14.18.1'
 
       - name: Use cached node_modules
         uses: actions/cache@v1
@@ -35,7 +35,7 @@ jobs:
       - name: Run tests for PR
         run: yarn test:remote --suite ci.pull_request
         env:
-          OUTPUT_DIR: "../../logs"
+          OUTPUT_DIR: '../../logs'
           CHROME: 1
 
       - name: Create Artifact

@@ -60,9 +60,11 @@ export const getCapabilityOptionsOverride = (): Partial<WebDriver.DesiredCapabil
     : {
         'selenoid:options': {
           enableVNC: true,
-          enableVideo: true,
+          enableVideo: isVideoRecordingEnabled(),
         },
       };
+
+export const isVideoRecordingEnabled = (): boolean => !isHeadlessMode() && !isFalsy(process.env.ENABLE_VIDEO);
 
 // isHeadlessMode: if process.env.BROWSER_VISIBLE has any falsy value, the browser will open in headless mode
 export const isHeadlessMode = () => isFalsy(process.env.BROWSER_VISIBLE);

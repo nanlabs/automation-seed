@@ -15,10 +15,10 @@ jobs:
       - name: Add artifact links to pull request and related issues step
         uses: tonyhallett/artifacts-url-comments@v1.1.0
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            prefix: Here are the artifacts for this PR (Logs, reports and video recordings!)
-            suffix: Have a nice day.
-            format: name
-            addTo: pullandissues
-            errorNoArtifacts: false
+          prefix: Here are the artifacts for this PR (Logs, reports and video recordings!)
+          suffix: Have a nice day.
+          format: name
+          addTo: pullandissues
+          errorNoArtifacts: false

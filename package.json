@@ -29,14 +29,14 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,json,md}": [
+    "*.{js,ts,json,md,yml}": [
       "yarn lint:fix",
       "git add"
     ]
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md}\" && eslint . --fix",
+    "lint:fix": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,json,md,yml}\" && eslint . --fix",
     "report": "allure generate",
     "selenoid": "./bin/selenoid",
     "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",

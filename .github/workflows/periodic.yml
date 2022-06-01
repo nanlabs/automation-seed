@@ -2,7 +2,7 @@ name: Periodic Checks
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.18.1"
+          node-version: '14.18.1'
 
       - name: Use cached node_modules
         uses: actions/cache@v1
@@ -42,11 +42,13 @@ jobs:
       - name: Run e2e tests
         run: yarn test:remote --suite ${{ matrix.suite }}
         env:
-          OUTPUT_DIR: "../../logs"
+          OUTPUT_DIR: '../../logs'
           WEBDRIVER_LOGLEVEL: info
           MAX_INSTANCES: 3
           CHROME: 2
           WEBDRIVER_SPEC_FILE_RETRIES: 1
+          BROWSER_VISIBLE: true
+          ENABLE_VIDEO: true
           ENV: ${{ matrix.environment }}
 
       - name: Create Artifact

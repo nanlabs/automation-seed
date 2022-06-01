@@ -8,44 +8,50 @@ on:
         description: Specifies the log level
         required: true
         type: choice
-        default: "info"
+        default: 'info'
         options:
-          - "trace"
-          - "debug"
-          - "info"
-          - "warn"
-          - "error"
-          - "silent"
+          - 'trace'
+          - 'debug'
+          - 'info'
+          - 'warn'
+          - 'error'
+          - 'silent'
 
       suite:
         description: Suite to be executed
-        default: "debug"
+        default: 'debug'
         required: true
 
       spec:
         description: Spec to be executed. (Won't be used if suite is specified)
-        default: ""
+        default: ''
         required: false
 
       max_instances:
         description: Maximum number of instances to be executed
-        default: ""
+        default: ''
         required: false
 
       chrome_instances:
         description: Amount of Chrome Instances to be used. Won't use Chrome when its value is a blank string
-        default: "1"
+        default: '1'
         required: false
 
       firefox_instances:
         description: Amount of Firefox Instances to be used. Won't use Firefox when its value is a blank string
-        default: ""
+        default: ''
         required: false
 
       browser_visible:
-        description: Specifies whether the browser is visible on the Remote Dashboard
+        description: Specifies whether the browser is visible on the Remote Dashboard. If false, the browsers will run in headless mode.
         type: boolean
-        default: false
+        default: true
+        required: false
+
+      enable_visible:
+        description: Specifies whether browser is recorded or not. Will be disabled if the browsers run in headless mode.
+        type: boolean
+        default: true
         required: false
 
 jobs:
@@ -61,7 +67,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.18.1"
+          node-version: '14.18.1'
 
       - name: Use cached node_modules
         uses: actions/cache@v1
@@ -78,9 +84,10 @@ jobs:
         run: yarn test:remote --suite ${{ github.event.inputs.suite }}
         if: ${{ github.event.inputs.suite != '' }}
         env:
-          OUTPUT_DIR: "../../logs"
+          OUTPUT_DIR: '../../logs'
           WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
           BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
+          ENABLE_VIDEO: ${{ github.event.inputs.enable_video }}
           MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
           CHROME: ${{ github.event.inputs.chrome_instances }}
           FIREFOX: ${{ github.event.inputs.firefox_instances }}
@@ -90,9 +97,10 @@ jobs:
         run: yarn test:remote --spec ${{ github.event.inputs.spec }}
         if: ${{ github.event.inputs.spec != '' }}
         env:
-          OUTPUT_DIR: "../../logs"
+          OUTPUT_DIR: '../../logs'
           WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
           BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
+          ENABLE_VIDEO: ${{ github.event.inputs.enable_video }}
           MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
           CHROME: ${{ github.event.inputs.chrome_instances }}
           FIREFOX: ${{ github.event.inputs.firefox_instances }}

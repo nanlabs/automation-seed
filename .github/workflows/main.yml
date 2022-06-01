@@ -5,22 +5,22 @@ on:
     branches:
       - main
     paths-ignore:
-    - 'docs/**'
-    
+      - 'docs/**'
+
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions: 
+permissions:
   contents: write
 
 jobs:
   main-check:
     concurrency: report
 
-    environment: 
+    environment:
       name: report
       url: https://nanlabs.github.io/automation-seed
 
@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.18.1"
+          node-version: '14.18.1'
 
       - name: Use cached node_modules
         uses: actions/cache@v1
@@ -51,7 +51,7 @@ jobs:
       - name: Run e2e tests
         run: yarn test:remote --suite ci.report
         env:
-          OUTPUT_DIR: "../../logs"
+          OUTPUT_DIR: '../../logs'
           WEBDRIVER_LOGLEVEL: info
           MAX_INSTANCES: 3
           CHROME: 2

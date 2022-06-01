@@ -4,13 +4,8 @@
     "module": "commonjs",
     // "outDir": "./dist",
     "strict": true,
-    "types": [
-      "node",
-      "webdriverio/async",
-      "@wdio/mocha-framework",
-      "expect-webdriverio"
-    ],
+    "types": ["node", "webdriverio/async", "@wdio/mocha-framework", "expect-webdriverio"],
     "esModuleInterop": true,
-    "inlineSourceMap": true,
+    "inlineSourceMap": true
   }
 }
