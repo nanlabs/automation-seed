@@ -106,5 +106,5 @@ jobs:
           if-no-files-found: warn
           path: |
             logs
-            test/errors
-            test/reports
+            allure-results
+            ~/.aerokube/selenoid

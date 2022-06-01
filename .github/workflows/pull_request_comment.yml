@@ -17,7 +17,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            prefix: Here are the artifacts for this PR
+            prefix: Here are the artifacts for this PR (Logs, reports and video recordings!)
             suffix: Have a nice day.
             format: name
             addTo: pullandissues
