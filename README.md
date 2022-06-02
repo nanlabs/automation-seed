@@ -125,7 +125,7 @@ FIREFOX=1 yarn test:remote --suite ci.periodic
 
 you can learn more about the `selenoid` script by running `yarn selenoid --help`.
 
-It is possible to specify another Selenium Hub with the env variables `SELENIUM_HUB_URL` and `SELENIUM_HUB_PORT`.
+It is possible to specify another Selenium Hub with the env variables `SELENIUM_HUB_HOST` and `SELENIUM_HUB_PORT`.
 
 ## CI/CD
 
