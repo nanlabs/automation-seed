@@ -60,20 +60,20 @@ jobs:
 
     steps:
       - name: Begin CI...
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '14.18.1'
 
       - name: Use cached node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-nodeModules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             nodeModules-
 
