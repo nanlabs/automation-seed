@@ -1,16 +1,17 @@
 {
   "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
   "children" : [ {
     "name" : "My Login application",
     "children" : [ {
       "name" : "should login with valid credentials",
-      "uid" : "34bfcac7b26972e",
+      "uid" : "32508b4bf57f01dc",
       "parentUid" : "f43874cc36d1c5833cbb332fc53460ce",
       "status" : "passed",
       "time" : {
-        "start" : 1655168809200,
-        "stop" : 1655168822999,
-        "duration" : 13799
+        "start" : 1655254803180,
+        "stop" : 1655254803823,
+        "duration" : 643
       },
       "flaky" : false,
       "newFailed" : false,
@@ -21,6 +22,5 @@
       "parameters" : [ "chrome-102.0.5005.61" ]
     } ],
     "uid" : "f43874cc36d1c5833cbb332fc53460ce"
-  } ],
-  "name" : "packages"
+  } ]
 }
