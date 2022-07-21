@@ -1,5 +1,8 @@
 name: Manual Execution
 
+permissions:
+  contents: write
+
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -52,6 +55,12 @@ on:
         description: Specifies whether browser is recorded or not. Will be disabled if the browsers run in headless mode.
         type: boolean
         default: true
+        required: false
+
+      update_report:
+        description: Specifies whether the report is updated or not.
+        type: boolean
+        default: false
         required: false
 
 jobs:
@@ -121,3 +130,20 @@ jobs:
             logs
             allure-results
             allure-report
+
+      - name: Save history
+        if: ${{ always() && github.event.inputs == 'true' }}
+        # trying to save history of previous runs if it exists
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true
+
+      - name: Create report
+        if: ${{ always() && github.event.inputs == 'true' }}
+        run: yarn report --clean
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: ${{ always() && github.event.inputs == 'true' }}
+        with:
+          branch: main # The branch the action should deploy to.
+          folder: allure-report # The folder the action should deploy.
+          target-folder: docs
