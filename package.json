@@ -41,7 +41,8 @@
     "selenoid": "./bin/selenoid",
     "test": "wdio run wdio.conf.js --no-autoCompileOpts.autoCompile",
     "test:local": "MODE=local yarn test",
-    "test:remote": "MODE=remote yarn test"
+    "test:remote": "MODE=remote yarn test",
+    "suite:files": "ts-node ./bin/suite-spec-paths.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
