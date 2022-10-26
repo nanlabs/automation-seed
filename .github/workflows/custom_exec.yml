@@ -30,6 +30,11 @@ on:
         default: ''
         required: false
 
+      webdriver_spec_file_retries:
+        description: Specifies the number of retries for each spec file
+        default: '0'
+        required: false
+
       max_instances:
         description: Maximum number of instances to be executed
         default: ''
@@ -64,86 +69,44 @@ on:
         required: false
 
 jobs:
-  run-tests:
-    runs-on: ubuntu-latest
+  run-workflow-suite:
+    if: github.event.inputs.suite != ''
 
-    steps:
-      - name: Begin CI...
-        uses: actions/checkout@v3
+    strategy:
+      fail-fast: false
+      matrix:
+        jobs: [0, 1, 2, 3, 4]
 
-      - name: Start selenoid
-        uses: Xotabu4/selenoid-github-action@v2
+    uses: ./.github/workflows/automation_exec.yml
+    with:
+      ref: ${{ github.ref  }}
+      log_level: ${{ github.event.inputs.log_level }}
+      suite: ${{ github.event.inputs.suite }}
+      spec_ci_index: ${{ matrix.jobs }}
+      spec_ci_total: 5
+      max_instances: ${{ github.event.inputs.max_instances }}
+      chrome_instances: ${{ github.event.inputs.chrome_instances }}
+      firefox_instances: ${{ github.event.inputs.firefox_instances }}
+      browser_visible: ${{ github.event.inputs.browser_visible }}
+      enable_video: ${{ github.event.inputs.enable_video }}
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16.13.2'
+  run-workflow-spec:
+    if: github.event.inputs.spec != ''
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+    strategy:
+      fail-fast: false
+      matrix:
+        jobs: [0, 1, 2, 3, 4]
 
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies without generating a lockfile and fail if an update is needed
-        run: yarn --frozen-lockfile
-
-      - name: Execute test Suite
-        run: yarn test:remote --suite ${{ github.event.inputs.suite }}
-        if: ${{ github.event.inputs.suite != '' }}
-        env:
-          OUTPUT_DIR: '../../logs'
-          WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
-          BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
-          ENABLE_VIDEO: ${{ github.event.inputs.enable_video }}
-          MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
-          CHROME: ${{ github.event.inputs.chrome_instances }}
-          FIREFOX: ${{ github.event.inputs.firefox_instances }}
-          WEBDRIVER_SPEC_FILE_RETRIES: 1
-
-      - name: Execute test Spec
-        run: yarn test:remote --spec ${{ github.event.inputs.spec }}
-        if: ${{ github.event.inputs.spec != '' }}
-        env:
-          OUTPUT_DIR: '../../logs'
-          WEBDRIVER_LOGLEVEL: ${{ github.event.inputs.log_level }}
-          BROWSER_VISIBLE: ${{ github.event.inputs.browser_visible }}
-          ENABLE_VIDEO: ${{ github.event.inputs.enable_video }}
-          MAX_INSTANCES: ${{ github.event.inputs.max_instances }}
-          CHROME: ${{ github.event.inputs.chrome_instances }}
-          FIREFOX: ${{ github.event.inputs.firefox_instances }}
-          WEBDRIVER_SPEC_FILE_RETRIES: 1
-
-      - name: Create Artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: result
-          if-no-files-found: warn
-          path: |
-            ~/.aerokube/selenoid
-            logs
-            allure-results
-            allure-report
-
-      - name: Save history
-        if: ${{ always() && github.event.inputs.update_report == 'true' }}
-        # trying to save history of previous runs if it exists
-        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true
-
-      - name: Create report
-        if: ${{ always() && github.event.inputs.update_report == 'true' }}
-        run: yarn report --clean
-
-      - name: Deploy report
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        if: ${{ always() && github.event.inputs.update_report == 'true' }}
-        with:
-          branch: main # The branch the action should deploy to.
-          folder: allure-report # The folder the action should deploy.
-          target-folder: docs
+    uses: ./.github/workflows/automation_exec.yml
+    with:
+      ref: ${{ github.ref  }}
+      log_level: ${{ github.event.inputs.log_level }}
+      spec: ${{ github.event.inputs.spec }}
+      spec_ci_index: ${{ matrix.jobs }}
+      spec_ci_total: 5
+      max_instances: ${{ github.event.inputs.max_instances }}
+      chrome_instances: ${{ github.event.inputs.chrome_instances }}
+      firefox_instances: ${{ github.event.inputs.firefox_instances }}
+      browser_visible: ${{ github.event.inputs.browser_visible }}
+      enable_video: ${{ github.event.inputs.enable_video }}

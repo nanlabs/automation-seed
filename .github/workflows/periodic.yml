@@ -9,60 +9,14 @@ on:
 
 jobs:
   periodic-checks:
-    runs-on: ubuntu-latest
+    needs: notify-start
 
-    strategy:
-      fail-fast: false
-      matrix:
-        suite:
-          - ci.periodic
-
-    steps:
-      - name: Begin CI...
-        uses: actions/checkout@v3
-
-      - name: Start selenoid
-        uses: Xotabu4/selenoid-github-action@v2
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16.13.2'
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies without generating a lockfile and fail if an update is needed
-        run: yarn --frozen-lockfile
-
-      - name: Run e2e tests
-        run: yarn test:remote --suite ${{ matrix.suite }}
-        env:
-          OUTPUT_DIR: '../../logs'
-          WEBDRIVER_LOGLEVEL: info
-          MAX_INSTANCES: 3
-          CHROME: 2
-          WEBDRIVER_SPEC_FILE_RETRIES: 1
-          BROWSER_VISIBLE: true
-          ENABLE_VIDEO: true
-          ENV: ${{ matrix.environment }}
-
-      - name: Create Artifact
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: result
-          if-no-files-found: warn
-          path: |
-            ~/.aerokube/selenoid
-            logs
-            allure-results
-            allure-report
+    uses: ./.github/workflows/automation_exec.yml
+    with:
+      log_level: info
+      suite: ci.periodic
+      max_instances: 3
+      chrome_instances: 2
+      browser_visible: true
+      enable_video: false
+      update_report: true

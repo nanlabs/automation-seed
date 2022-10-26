@@ -1,0 +1,195 @@
+
+name: Reusable Automation Workflow
+
+permissions:
+  contents: write
+
+on:
+  # This will allow us to reuse this workflow from other repos
+  workflow_call:
+    inputs:
+      ref:
+        description: Specifies from which ref to execute the automation.
+        required: false
+        type: string
+        default: ""
+
+      log_level:
+        description: Specifies the log level
+        required: true
+        type: string
+        default: 'info'
+
+      suite:
+        description: Suite to be executed
+        default: ''
+        type: string
+        required: false
+
+      spec:
+        description: Spec to be executed. (Won't be used if suite is specified)
+        default: ''
+        type: string
+        required: false
+
+      spec_ci_index:
+        description: Specifies the index of the spec in the CI environment
+        default: 0
+        type: number
+        required: false
+
+      spec_ci_total:
+        description: Specifies the total number of specs in the CI environment
+        default: 1
+        type: number
+        required: false
+
+      webdriver_spec_file_retries:
+        description: Specifies the number of retries for each spec file
+        default: 0
+        type: number
+        required: false
+
+      max_instances:
+        description: Maximum number of instances to be executed
+        default: ''
+        type: string
+        required: false
+
+      chrome_instances:
+        description: Amount of Chrome Instances to be used. Won't use Chrome when its value is a blank string
+        default: '1'
+        type: string
+        required: false
+
+      firefox_instances:
+        description: Amount of Firefox Instances to be used. Won't use Firefox when its value is a blank string
+        default: ''
+        type: string
+        required: false
+
+      browser_visible:
+        description: Specifies whether the browser is visible on the Remote Dashboard. If false, the browsers will run in headless mode.
+        type: string
+        default: 'true'
+        required: false
+
+      enable_video:
+        description: Specifies whether browser is recorded or not. Will be disabled if the browsers run in headless mode.
+        type: string
+        default: 'true'
+        required: false
+
+      update_report:
+        description: Specifies whether the report is updated or not.
+        type: string
+        default: 'false'
+        required: false
+
+jobs:
+  run-tests:
+    name: Run Tests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+        with:
+          selenoid-start-arguments: |
+            --browsers "chrome" --last-versions 1 --shm-size 1024
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies without generating a lockfile and fail if an update is needed
+        run: yarn --frozen-lockfile
+
+      - name: Execute test Suite
+        run: |
+          SPEC_FILES=$(yarn --silent suite:files ${{ inputs.suite }} | sort | awk "NR % $CI_TOTAL_JOBS == $CI_JOB_INDEX")
+          echo "Number of specs to be executed: $(echo $SPEC_FILES | wc -w)"
+          [[ -z "$SPEC_FILES" ]] && exit 0
+          echo "Running specs: $SPEC_FILES"
+          echo $SPEC_FILES | xargs yarn test:remote --spec
+        if: ${{ inputs.suite != '' }}
+        env:
+          OUTPUT_DIR: '../../logs'
+          ENV: ${{ inputs.environment }}
+          WEBDRIVER_LOGLEVEL: ${{ inputs.log_level }}
+          BROWSER_VISIBLE: ${{ inputs.browser_visible }}
+          ENABLE_VIDEO: ${{ inputs.enable_video }}
+          MAX_INSTANCES: ${{ inputs.max_instances }}
+          CHROME: ${{ inputs.chrome_instances }}
+          FIREFOX: ${{ inputs.firefox_instances }}
+          WEBDRIVER_SPEC_FILE_RETRIES: ${{ inputs.webdriver_spec_file_retries }}
+          CI_JOB_INDEX: ${{ inputs.spec_ci_index }}
+          CI_TOTAL_JOBS: ${{ inputs.spec_ci_total }}
+
+      - name: Execute test Spec
+        run: |
+          SPEC_FILES=$(find ${{ inputs.spec }} | sort | awk "NR % $CI_TOTAL_JOBS == $CI_JOB_INDEX")
+          echo "Number of specs to be executed: $(echo $SPEC_FILES | wc -w)"
+          [[ -z "$SPEC_FILES" ]] && exit 0
+          echo "Running specs: $SPEC_FILES"
+          echo $SPEC_FILES | xargs yarn test:remote --spec
+        if: ${{ inputs.spec != '' }}
+        env:
+          OUTPUT_DIR: '../../logs'
+          ENV: ${{ inputs.environment }}
+          WEBDRIVER_LOGLEVEL: ${{ inputs.log_level }}
+          BROWSER_VISIBLE: ${{ inputs.browser_visible }}
+          ENABLE_VIDEO: ${{ inputs.enable_video }}
+          MAX_INSTANCES: ${{ inputs.max_instances }}
+          CHROME: ${{ inputs.chrome_instances }}
+          FIREFOX: ${{ inputs.firefox_instances }}
+          WEBDRIVER_SPEC_FILE_RETRIES: ${{ inputs.webdriver_spec_file_retries }}
+          CI_JOB_INDEX: ${{ inputs.spec_ci_index }}
+          CI_TOTAL_JOBS: ${{ inputs.spec_ci_total }}
+
+      #- name: Create Artifact
+      #  if: failure()
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: result
+      #    if-no-files-found: warn
+      #    path: |
+      #      logs
+      #      allure-results
+      #      allure-report
+      
+      - name: Save history
+        if: ${{ always() && inputs.update_report == 'true' }}
+        # trying to save history of previous runs if it exists
+        run: |
+          mkdir -p $(pwd)/allure-results/history
+          cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true
+      - name: Create report
+        if: ${{ always() && inputs.update_report == 'true' }}
+        run: yarn report --clean
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: ${{ always() && inputs.update_report == 'true' }}
+        with:
+          branch: main # The branch the action should deploy to.
+          folder: allure-report # The folder the action should deploy.
+          target-folder: docs
