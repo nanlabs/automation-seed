@@ -32,25 +32,27 @@
 
 ## Quickstart
 
+**You’ll need to have Node 16.13.2 or later on your local development machine** (but it’s not required on the server). You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
+
 ```sh
 $ git clone git@github.com:nanlabs/automation-seed.git
 $ cd automation-seed
-$ nvm use
+$ fnm use
 $ yarn
 $ yarn test --help
 ```
 
 ## Dependencies
 
-This installation guide assumes you have chocolatey for Windows, brew for Mac OS, or are running a Debian based Linux distro. Additionally, you should have NVM and yarn installed on your system.
+This installation guide assumes you have chocolatey for Windows, brew for Mac OS, or are running a Debian based Linux distro. Additionally, you should have FNM and yarn installed on your system.
 
-- **OpenJDK**: JDK is required for being able to run tests locally on your machine. The only tested and proven version is OpenJDK 11 JRE.
+- **OpenJDK**: **This is an optional dependency that will be required only if you decide to run using your local capabilities**. JDK is required for being able to run tests locally on your machine. The only tested and proven version is OpenJDK 11 JRE.
 
   - Linux: `sudo apt install openjdk-11-jre-headless`
   - Mac: `brew tap AdoptOpenJDK/openjdk && brew install adoptopenjdk11-jre`
   - Windows: `choco install adoptopenjdk11jre`
 
-- **NodeJS**: The easiest way to install NodeJS is with NVM. To install the correct version of NodeJS, set the current active directory of a terminal session to the cloned repository location and run `nvm install`
+- **NodeJS**: **You’ll need to have Node 16.13.2 or later on your local development machine**. You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
 
 - **Framework Dependencies**: To intall the required dependencies, set the current active directory of a terminal session to the cloned repository location and run `yarn install`
 
@@ -58,7 +60,7 @@ This installation guide assumes you have chocolatey for Windows, brew for Mac OS
 
 ## Executing Tests
 
-You can specify the `suite`s within `./config/wdio.suites.conf.ts`.
+You can specify the `suites` within `./config/wdio.suites.conf.ts`.
 
 ### Available Scripts
 
