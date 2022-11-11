@@ -9,8 +9,6 @@ on:
 
 jobs:
   periodic-checks:
-    needs: notify-start
-
     uses: ./.github/workflows/automation_exec.yml
     with:
       log_level: info
