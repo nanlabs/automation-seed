@@ -1,12 +1,12 @@
 {
-  "uid" : "1056e9c6d5e7ec2b",
+  "uid" : "c792c7a70b047d11",
   "name" : "should login with valid credentials",
   "fullName" : "My Login application.should login with valid credentials",
   "historyId" : "6045323d221cfc5c07ff386d023f0e80",
   "time" : {
-    "start" : 1680050377340,
-    "stop" : 1680050378010,
-    "duration" : 670
+    "start" : 1680136572708,
+    "stop" : 1680136573365,
+    "duration" : 657
   },
   "description" : "",
   "descriptionHtml" : "",
@@ -23,16 +23,16 @@
     "steps" : [ {
       "name" : "POST /session/:sessionId/url",
       "time" : {
-        "start" : 1680050377342,
-        "stop" : 1680050377598,
-        "duration" : 256
+        "start" : 1680136572710,
+        "stop" : 1680136572951,
+        "duration" : 241
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "4089f4989314b7fb",
+        "uid" : "c307df836914d666",
         "name" : "Request",
-        "source" : "4089f4989314b7fb.json",
+        "source" : "c307df836914d666.json",
         "type" : "application/json",
         "size" : 55
       } ],
@@ -44,22 +44,22 @@
     }, {
       "name" : "POST /session/:sessionId/element",
       "time" : {
-        "start" : 1680050377599,
-        "stop" : 1680050377622,
-        "duration" : 23
+        "start" : 1680136572952,
+        "stop" : 1680136572971,
+        "duration" : 19
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "15fe589914c3967",
+        "uid" : "6be786183fe27742",
         "name" : "Request",
-        "source" : "15fe589914c3967.json",
+        "source" : "6be786183fe27742.json",
         "type" : "application/json",
         "size" : 53
       }, {
-        "uid" : "fb5e96f972133130",
+        "uid" : "74b748b28542a991",
         "name" : "Response",
-        "source" : "fb5e96f972133130.json",
+        "source" : "74b748b28542a991.json",
         "type" : "application/json",
         "size" : 83
       } ],
@@ -69,73 +69,10 @@
       "shouldDisplayMessage" : false,
       "hasContent" : true
     }, {
-      "name" : "POST /session/:sessionId/element/318c566f-051d-4690-a63e-55e3bd3aa6eb/clear",
+      "name" : "POST /session/:sessionId/element/02326873-3ee6-40eb-a2e3-f78c44f92e76/clear",
       "time" : {
-        "start" : 1680050377626,
-        "stop" : 1680050377654,
-        "duration" : 28
-      },
-      "status" : "passed",
-      "steps" : [ ],
-      "attachments" : [ ],
-      "parameters" : [ ],
-      "stepsCount" : 0,
-      "attachmentsCount" : 0,
-      "shouldDisplayMessage" : false,
-      "hasContent" : false
-    }, {
-      "name" : "POST /session/:sessionId/element/318c566f-051d-4690-a63e-55e3bd3aa6eb/value",
-      "time" : {
-        "start" : 1680050377658,
-        "stop" : 1680050377699,
-        "duration" : 41
-      },
-      "status" : "passed",
-      "steps" : [ ],
-      "attachments" : [ {
-        "uid" : "2189c13bb7b752e1",
-        "name" : "Request",
-        "source" : "2189c13bb7b752e1.json",
-        "type" : "application/json",
-        "size" : 24
-      } ],
-      "parameters" : [ ],
-      "stepsCount" : 0,
-      "attachmentsCount" : 1,
-      "shouldDisplayMessage" : false,
-      "hasContent" : true
-    }, {
-      "name" : "POST /session/:sessionId/element",
-      "time" : {
-        "start" : 1680050377700,
-        "stop" : 1680050377711,
-        "duration" : 11
-      },
-      "status" : "passed",
-      "steps" : [ ],
-      "attachments" : [ {
-        "uid" : "1dbc5cd0784a7561",
-        "name" : "Request",
-        "source" : "1dbc5cd0784a7561.json",
-        "type" : "application/json",
-        "size" : 53
-      }, {
-        "uid" : "c644fedeba5c6639",
-        "name" : "Response",
-        "source" : "c644fedeba5c6639.json",
-        "type" : "application/json",
-        "size" : 83
-      } ],
-      "parameters" : [ ],
-      "stepsCount" : 0,
-      "attachmentsCount" : 2,
-      "shouldDisplayMessage" : false,
-      "hasContent" : true
-    }, {
-      "name" : "POST /session/:sessionId/element/5a879472-b51e-4621-a861-a012e2c26db8/clear",
-      "time" : {
-        "start" : 1680050377713,
-        "stop" : 1680050377742,
+        "start" : 1680136572976,
+        "stop" : 1680136573005,
         "duration" : 29
       },
       "status" : "passed",
@@ -147,18 +84,81 @@
       "shouldDisplayMessage" : false,
       "hasContent" : false
     }, {
-      "name" : "POST /session/:sessionId/element/5a879472-b51e-4621-a861-a012e2c26db8/value",
+      "name" : "POST /session/:sessionId/element/02326873-3ee6-40eb-a2e3-f78c44f92e76/value",
       "time" : {
-        "start" : 1680050377743,
-        "stop" : 1680050377793,
+        "start" : 1680136573009,
+        "stop" : 1680136573050,
+        "duration" : 41
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "ef9618c65a51d36f",
+        "name" : "Request",
+        "source" : "ef9618c65a51d36f.json",
+        "type" : "application/json",
+        "size" : 24
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "POST /session/:sessionId/element",
+      "time" : {
+        "start" : 1680136573051,
+        "stop" : 1680136573063,
+        "duration" : 12
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "fb8ab8934ba8c48",
+        "name" : "Request",
+        "source" : "fb8ab8934ba8c48.json",
+        "type" : "application/json",
+        "size" : 53
+      }, {
+        "uid" : "6a41e7c1ff8411f0",
+        "name" : "Response",
+        "source" : "6a41e7c1ff8411f0.json",
+        "type" : "application/json",
+        "size" : 83
+      } ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 2,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "POST /session/:sessionId/element/95fb5b5a-1e2c-4437-862c-48100f8fc4b6/clear",
+      "time" : {
+        "start" : 1680136573066,
+        "stop" : 1680136573095,
+        "duration" : 29
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "POST /session/:sessionId/element/95fb5b5a-1e2c-4437-862c-48100f8fc4b6/value",
+      "time" : {
+        "start" : 1680136573097,
+        "stop" : 1680136573147,
         "duration" : 50
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "ed3cfa89c700d146",
+        "uid" : "cef3e524561de7e8",
         "name" : "Request",
-        "source" : "ed3cfa89c700d146.json",
+        "source" : "cef3e524561de7e8.json",
         "type" : "application/json",
         "size" : 36
       } ],
@@ -170,22 +170,22 @@
     }, {
       "name" : "POST /session/:sessionId/element",
       "time" : {
-        "start" : 1680050377793,
-        "stop" : 1680050377806,
-        "duration" : 13
+        "start" : 1680136573147,
+        "stop" : 1680136573161,
+        "duration" : 14
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "544a6a4336914732",
+        "uid" : "9d128686ed6f6ca6",
         "name" : "Request",
-        "source" : "544a6a4336914732.json",
+        "source" : "9d128686ed6f6ca6.json",
         "type" : "application/json",
         "size" : 67
       }, {
-        "uid" : "d5eda172ee50483e",
+        "uid" : "fbeec294342ecee5",
         "name" : "Response",
-        "source" : "d5eda172ee50483e.json",
+        "source" : "fbeec294342ecee5.json",
         "type" : "application/json",
         "size" : 83
       } ],
@@ -195,11 +195,11 @@
       "shouldDisplayMessage" : false,
       "hasContent" : true
     }, {
-      "name" : "POST /session/:sessionId/element/2e1d70d9-dd52-479c-bad7-95f776e3b4ea/click",
+      "name" : "POST /session/:sessionId/element/30e771ed-aa7f-4cf6-a8a5-b5bbe726187b/click",
       "time" : {
-        "start" : 1680050377807,
-        "stop" : 1680050377947,
-        "duration" : 140
+        "start" : 1680136573163,
+        "stop" : 1680136573299,
+        "duration" : 136
       },
       "status" : "passed",
       "steps" : [ ],
@@ -212,22 +212,22 @@
     }, {
       "name" : "POST /session/:sessionId/element",
       "time" : {
-        "start" : 1680050377949,
-        "stop" : 1680050377963,
-        "duration" : 14
+        "start" : 1680136573300,
+        "stop" : 1680136573318,
+        "duration" : 18
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "1c02f74ab4bce22c",
+        "uid" : "c33b1606a2004236",
         "name" : "Request",
-        "source" : "1c02f74ab4bce22c.json",
+        "source" : "c33b1606a2004236.json",
         "type" : "application/json",
         "size" : 50
       }, {
-        "uid" : "5447cd3710e6860e",
+        "uid" : "8001a95218ef1e8",
         "name" : "Response",
-        "source" : "5447cd3710e6860e.json",
+        "source" : "8001a95218ef1e8.json",
         "type" : "application/json",
         "size" : 83
       } ],
@@ -239,22 +239,22 @@
     }, {
       "name" : "POST /session/:sessionId/elements",
       "time" : {
-        "start" : 1680050377965,
-        "stop" : 1680050377976,
-        "duration" : 11
+        "start" : 1680136573320,
+        "stop" : 1680136573332,
+        "duration" : 12
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "a584d2664c9afec4",
+        "uid" : "d1606d63a68e559c",
         "name" : "Request",
-        "source" : "a584d2664c9afec4.json",
+        "source" : "d1606d63a68e559c.json",
         "type" : "application/json",
         "size" : 50
       }, {
-        "uid" : "6320571b4ab241c8",
+        "uid" : "d3e49fcbba11f378",
         "name" : "Response",
-        "source" : "6320571b4ab241c8.json",
+        "source" : "d3e49fcbba11f378.json",
         "type" : "application/json",
         "size" : 93
       } ],
@@ -266,22 +266,22 @@
     }, {
       "name" : "POST /session/:sessionId/element",
       "time" : {
-        "start" : 1680050377980,
-        "stop" : 1680050377987,
-        "duration" : 7
+        "start" : 1680136573336,
+        "stop" : 1680136573344,
+        "duration" : 8
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "ec200bb205c0434f",
+        "uid" : "20d0723557a5c653",
         "name" : "Request",
-        "source" : "ec200bb205c0434f.json",
+        "source" : "20d0723557a5c653.json",
         "type" : "application/json",
         "size" : 50
       }, {
-        "uid" : "90dcfb4842cf3362",
+        "uid" : "322b2043e6d52c5e",
         "name" : "Response",
-        "source" : "90dcfb4842cf3362.json",
+        "source" : "322b2043e6d52c5e.json",
         "type" : "application/json",
         "size" : 83
       } ],
@@ -291,18 +291,18 @@
       "shouldDisplayMessage" : false,
       "hasContent" : true
     }, {
-      "name" : "GET /session/:sessionId/element/a1cf6264-3e62-4c14-b1b4-4fe765224ab4/text",
+      "name" : "GET /session/:sessionId/element/6e554e48-51d7-4adc-9e14-f740300c632c/text",
       "time" : {
-        "start" : 1680050377990,
-        "stop" : 1680050378009,
-        "duration" : 19
+        "start" : 1680136573347,
+        "stop" : 1680136573364,
+        "duration" : 17
       },
       "status" : "passed",
       "steps" : [ ],
       "attachments" : [ {
-        "uid" : "fb18ee6bea27f7cc",
+        "uid" : "337e40dcd9ed61d6",
         "name" : "Response",
-        "source" : "fb18ee6bea27f7cc.json",
+        "source" : "337e40dcd9ed61d6.json",
         "type" : "application/json",
         "size" : 36
       } ],
@@ -364,11 +364,19 @@
         "failed" : 0,
         "broken" : 0,
         "skipped" : 0,
-        "passed" : 9,
+        "passed" : 10,
         "unknown" : 0,
-        "total" : 9
+        "total" : 10
       },
       "items" : [ {
+        "uid" : "1056e9c6d5e7ec2b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1680050377340,
+          "stop" : 1680050378010,
+          "duration" : 670
+        }
+      }, {
         "uid" : "87ebc505e5d6783e",
         "status" : "passed",
         "time" : {
@@ -436,6 +444,6 @@
     },
     "tags" : [ ]
   },
-  "source" : "1056e9c6d5e7ec2b.json",
+  "source" : "c792c7a70b047d11.json",
   "parameterValues" : [ "chrome-111.0.5563.64" ]
 }
