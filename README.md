@@ -13,7 +13,7 @@
 
 </div>
 
-The "Automation Seed" project template is designed to expedite, simplify, and secure the automation of *User Acceptance Testing*. Pre-configured with Webdriver & Selenium and entirely containerized with Docker, it's a plug & play solution that saves time and eliminates the need for cumbersome setup and configuration. Plus, with no hardcoded system or user credentials, it's a more secure solution for your QA automation needs.
+The "Automation Seed" project template is designed to expedite, simplify, and secure the automation of **User Acceptance Testing**. Pre-configured with Webdriver & Selenium and entirely containerized with Docker, it's a plug & play solution that saves time and eliminates the need for cumbersome setup and configuration. Plus, with no hardcoded system or user credentials, it's a more secure solution for your QA automation needs.
 
 ## Motivation
 Tired of dealing with outdated and sluggish QA automation frameworks? We were too. That's why we created this repository to solve some of the common pain points, including:
