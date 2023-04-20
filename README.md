@@ -41,21 +41,6 @@ Tired of dealing with outdated and sluggish QA automation frameworks? We were to
 
 ---
 
-- [Quickstart](#quickstart)
-- [Dependencies](#dependencies)
-- [Executing Tests](#executing-tests)
-  - [Available Scripts](#available-scripts)
-    - [Execute Suite](#execute-suite)
-    - [Execute Spec Files](#execute-spec-files)
-    - [Capabilities](#capabilities)
-  - [Environment Variables](#environment-variables)
-  - [Remote Tests execution using Selenoid](#remote-tests-execution-using-selenoid)
-- [CI/CD](#cicd)
-- [Config Files](#config-files)
-  - [Reporters](#reporters)
-  - [Spec](#spec)
-- [Creating Tests](#creating-tests)
-
 ## Quickstart
 
 **You’ll need to have Node 16.13.2 or later on your local development machine** (but it’s not required on the server). You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
