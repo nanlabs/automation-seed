@@ -13,7 +13,28 @@
 
 </div>
 
-This project was generated using [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app). **DON'T USE THIS TEMPLATE AS IT!** Generate yours using the command and following the options in the interactive menu. Check the docs for more information!
+The "Automation Seed" project template is designed to expedite, simplify, and secure the automation of *User Acceptance Testing*. Pre-configured with Webdriver & Selenium and entirely containerized with Docker, it's a plug & play solution that saves time and eliminates the need for cumbersome setup and configuration. Plus, with no hardcoded system or user credentials, it's a more secure solution for your QA automation needs.
+
+## Motivation
+Tired of dealing with outdated and sluggish QA automation frameworks? We were too. That's why we created this repository to solve some of the common pain points, including:
+
+- Frameworks with outdated technologies
+- Cumbersome setup and configuration
+- Compatibility and configuration issues to run tests over different browsers
+- Security risks such as hardcoded system or user credentials within your config files
+- Limitations to support different environments with advanced CI/CD pipelines
+
+## Features
+
+- Works out-of-the-box, a plug & play solution that eliminates the need for cumbersome setup and configuration.
+- Secure! No more hardcoded system or user credentials
+- Entirely containerized with Docker for seamless testing across different environments.
+- Pre-configured with:
+    - Webdriver & Selenium for faster and easier testing
+    - Github actions for easy integration into your CI/CD pipeline
+    - Support major browsers including Chrome, Safari, Firefox, and Edge
+    - [Report page](https://nanlabs.github.io/automation-seed/) deployed, for test metrics and insights.
+- Built with the latest technologies and entirely in TypeScript, you can reuse those libraries to write your own tests.
 
 ---
 
