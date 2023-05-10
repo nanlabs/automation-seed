@@ -582,13 +582,22 @@
   "9369a88bb000faf0d011b23953cba268" : {
     "statistic" : {
       "failed" : 0,
-      "broken" : 0,
+      "broken" : 1,
       "skipped" : 0,
       "passed" : 27,
       "unknown" : 0,
-      "total" : 27
+      "total" : 28
     },
     "items" : [ {
+      "uid" : "99fddb7256b5963f",
+      "status" : "broken",
+      "statusDetails" : "Can't call setValue on element with selector \"#username\" because element wasn't found",
+      "time" : {
+        "start" : 1683678804365,
+        "stop" : 1683678815169,
+        "duration" : 10804
+      }
+    }, {
       "uid" : "cc94e47870602704",
       "status" : "passed",
       "time" : {
@@ -739,14 +748,6 @@
         "start" : 1682037222656,
         "stop" : 1682037224393,
         "duration" : 1737
-      }
-    }, {
-      "uid" : "cba070ce81d8472d",
-      "status" : "passed",
-      "time" : {
-        "start" : 1681996702653,
-        "stop" : 1681996703330,
-        "duration" : 677
       }
     } ]
   },
