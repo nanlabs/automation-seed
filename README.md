@@ -7,6 +7,7 @@
 </div>
 <div align="center">
 
+[![Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/nanlabs/awesome-nan)
 [![Periodic Check][workflowbadge]][workflowurl]
 [![Report Deployment][deploydocsbadge]][deploydocsurl]
 [![License: MIT][licensebadge]][licenseurl]
