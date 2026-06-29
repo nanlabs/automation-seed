@@ -5,6 +5,16 @@
 [Contributing](https://github.com/nanlabs/automation-seed/blob/main/CONTRIBUTING.md)
 
 </div>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/create-awesome-node-app">
+    <img src="https://img.shields.io/badge/Generated%20with-Create%20Awesome%20Node%20App-6B46C1?style=for-the-badge&logo=npm" alt="Generated with Create Awesome Node App">
+  </a>
+  <a href="https://github.com/Create-Node-App">
+    <img src="https://img.shields.io/badge/Powered%20by-Create%E2%80%A2Node%E2%80%A2App-223344?style=for-the-badge&logo=github" alt="Powered by Create-Node-App">
+  </a>
+</div>
+
 <div align="center">
 
 [![Awesome](https://awesome.re/mentioned-badge.svg)](https://github.com/nanlabs/awesome-nan)
@@ -13,6 +23,12 @@
 [![License: MIT][licensebadge]][licenseurl]
 
 </div>
+
+<div align="center">
+  <p><strong>NaNLABS</strong> uses and actively contributes to the maintenance of <a href="https://www.npmjs.com/package/create-awesome-node-app">Create Awesome Node App</a> — an open-source CLI tool for scaffolding Node.js projects.</p>
+</div>
+
+---
 
 > This project was generated using [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app). **DON'T USE THIS TEMPLATE AS IT!** Generate yours using the command and following the options in the interactive menu. Check the docs for more information!
 
@@ -44,7 +60,7 @@ Tired of dealing with outdated and sluggish QA automation frameworks? We were to
 
 ## Quickstart
 
-**You’ll need to have Node 16.13.2 or later on your local development machine** (but it’s not required on the server). You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
+**You'll need to have Node 16.13.2 or later on your local development machine** (but it's not required on the server). You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
 
 ```sh
 $ git clone git@github.com:nanlabs/automation-seed.git
@@ -64,7 +80,7 @@ This installation guide assumes you have chocolatey for Windows, brew for Mac OS
   - Mac: `brew tap AdoptOpenJDK/openjdk && brew install adoptopenjdk11-jre`
   - Windows: `choco install adoptopenjdk11jre`
 
-- **NodeJS**: **You’ll need to have Node 16.13.2 or later on your local development machine**. You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
+- **NodeJS**: **You'll need to have Node 16.13.2 or later on your local development machine**. You can use [fnm](https://github.com/Schniz/fnm) to easily switch Node versions between different projects.
 
 - **Framework Dependencies**: To intall the required dependencies, set the current active directory of a terminal session to the cloned repository location and run `yarn install`
 
